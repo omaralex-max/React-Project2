@@ -1,7 +1,13 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
+import Favorites from "../../pages/Favorites/Favorites";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate=useNavigate()
+  const navigateToFavoritesPage=()=>{
+    navigate("Favorites")
+  }
   return (
     <nav style={navStyle}>
       <div style={leftSectionStyle}>
@@ -12,8 +18,8 @@ function Navbar() {
           En <span style={dropdownArrowStyle}>▼</span>
         </span>
         <div style={watchlistStyle}>
-          <FaHeart style={heartIconStyle} />
-          <span>Watchlist</span>
+          <FaHeart style={heartIconStyle} onClick={navigateToFavoritesPage} />
+          <span onClick={navigateToFavoritesPage} >Watchlist</span>
         </div>
       </div>
     </nav>
