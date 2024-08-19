@@ -1,24 +1,16 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
-import Favorites from "../pages/Favorites/Favorites";
-import HomePage from "../pages/HomePage/HomePage";
-export default function AppRoute(){
+
+const Favorites = lazy(() => import("../pages/Favorites/Favorites"));
+const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+
+export default function AppRoute() {
     return (
-
-        <>
-        <Suspense fallback={<h1>Favorites Page is still loading</h1>}>
-        <BrowserRouter>
+        <Suspense fallback={<h1>Loading...</h1>}>
             <Routes>
-                    <Route>
-                        <Route path="/" element={<HomePage/>}></Route>
-                        <Route path="favorites" element={<Favorites/>}></Route>
-                        
-                    </Route>
+                <Route path="/" element={<HomePage />} />
+                <Route path="favorites" element={<Favorites />} />
             </Routes>
-    </BrowserRouter>
-    
-
-    </Suspense>
-        </>
-    )
+        </Suspense>
+    );
 }
