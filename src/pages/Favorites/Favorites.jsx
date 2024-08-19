@@ -19,7 +19,7 @@ return(
         <>
         <h1 className="fw-bold ms-5 mt-2"> Watch List</h1>
         <div className="d-flex flex-column justify-content-center align-items-center outerDiv">
-        <img src={noFavoritesIcon}></img>
+        <img src={noFavoritesIcon} alt="Heart"></img>
         <h2 className=" mt-5">No Movies in Watch List</h2>
         <button className="bg-warning btn backButton mt-3" onClick={navigateToHomePage}>Back To Home</button>
 

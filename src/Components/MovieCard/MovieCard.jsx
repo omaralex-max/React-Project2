@@ -1,6 +1,8 @@
+//import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function MovieCard({ movie }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -9,6 +11,38 @@ function MovieCard({ movie }) {
     setIsFavorite(!isFavorite);
   };
 
+  //color raiting function
+  const getBorderColor = (rating) => {
+    if (rating >= 80) return "#00ff00"; 
+    if (rating >= 60) return "yellow"; 
+    if (rating >= 50) return "orange"; 
+    return "red"; 
+  };
+  const rating = Math.round(movie.vote_average * 10);
+  const borderColor = getBorderColor(rating);
+  const ratingCircleStyle = {
+    position: "absolute",
+    bottom: "-15px",
+    border: `5px solid ${borderColor}`,
+    left: "10px",
+    width: "40px",
+    height: "40px",
+    borderRadius: "50%",
+    backgroundColor: "#1e2533",
+    color: "#87ceeb",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontWeight: "bold",
+    fontSize: "14px",
+  };
+
+  const navigate=useNavigate()
+
+  const navigateToDiscPage=()=>{
+      navigate('Discpage')
+  }
+  
   return (
     <div style={cardStyle}>
       <div style={imageWrapperStyle}>
@@ -38,7 +72,7 @@ function MovieCard({ movie }) {
           />
         </div>
          <Link to={`/movie/${movie.id}`}>
-          <button className="btn btn-outline-warning">View Details</button>
+          <button className="btn btn-outline-warning mb-3"  onClick={navigateToDiscPage}>View Details</button>
         </Link>
       </div>
     </div>
@@ -46,7 +80,7 @@ function MovieCard({ movie }) {
 }
 
 const cardStyle = {
-  width: "180px",
+  width: "200px",
   backgroundColor: "#fff",
   borderRadius: "10px",
   overflow: "hidden",
@@ -57,30 +91,17 @@ const cardStyle = {
 };
 
 const imageWrapperStyle = {
-  position: "relative",
+  position: "relative",  
+  borderRadius: "15px", 
 };
 
 const imageStyle = {
   width: "100%",
-  height: "250px",
+  height: "100%",
   objectFit: "cover",
+  marginBottom: "10px",
 };
 
-const ratingCircleStyle = {
-  position: "absolute",
-  bottom: "-15px",
-  left: "10px",
-  width: "40px",
-  height: "40px",
-  borderRadius: "50%",
-  backgroundColor: "#1e2533",
-  color: "#87ceeb",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  fontWeight: "bold",
-  fontSize: "14px",
-};
 
 const cardContentStyle = {
   padding: "10px",
@@ -88,9 +109,10 @@ const cardContentStyle = {
 };
 
 const titleStyle = {
-  margin: "10px 0 5px 0",
-  fontSize: "16px",
-  color: "#333",
+marginTop: "15px",
+fontSize: "18px",
+height:"50px",
+marginBottom: "15px",
 };
 
 const dateStyle = {
@@ -101,7 +123,7 @@ const dateStyle = {
 
 const favoriteWrapperStyle = {
   position: "absolute",
-  bottom: "10px",
+  bottom: "35px",
   right: "10px",
   display: "flex",
   justifyContent: "center",

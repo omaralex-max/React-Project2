@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
 import Routes from "./Routes/Routes"
-
+import React from "react"
 export default function App() {
   return(
     <>

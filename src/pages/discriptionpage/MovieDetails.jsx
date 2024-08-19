@@ -1,13 +1,25 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import DynamicStar from "./DynamicStar"; 
-import CardsCarousel from "./slidercards"; // Import the carousel component
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import DynamicStar from "./DynamicStar";
+import CardsCarousel from "./slidercards";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-
+import { FaHeart } from "react-icons/fa";
+import Navbar from "../../Components/Navbar/Navbar";
 const MovieDetails = ({ movie, recommendations }) => {
-  const primaryCompany = movie.production_companies[0] || null;
+  const primaryCompany = movie?.production_companies?.[0] || null;
+  const [isFavorite, setIsFavorite] = useState(false);
+  const toggleFavorite = () => setIsFavorite(!isFavorite);
+
+  const navigate = useNavigate();
+  const navigateToHomePage = () => navigate("/");
+
+  if (!movie) {
+    return <p>Error Loading Data...</p>;
+  }
 
   return (
+    <>
+    <Navbar />
     <div className="mx-5 mt-5">
       <div className="row">
         {/* Movie Poster */}
@@ -23,9 +35,16 @@ const MovieDetails = ({ movie, recommendations }) => {
         {/* Movie Details */}
         <div className="col-md-8 mx-4">
           <h1>{movie.title}</h1>
-          <p className="mb-5" style={{ color: "gray" }}>
-            {movie.release_date}
-          </p>
+          <p style={{ color: "gray" }}>{movie.release_date}</p>
+          <div className="mb-3" onClick={toggleFavorite}>
+            <FaHeart
+              style={{
+                color: isFavorite ? "#ffeb3b" : "gray",
+                fontSize: "30px",
+                cursor: "pointer",
+              }}
+            />
+          </div>
           <p className="mb-5">
             <strong>Rating:</strong>
             <DynamicStar rating={movie.vote_average} /> {movie.vote_average}
@@ -47,7 +66,7 @@ const MovieDetails = ({ movie, recommendations }) => {
           </p>
           <p>
             <strong>Languages:</strong>
-            {movie.spoken_languages.map((language) => (
+            {movie.spoken_languages?.map((language) => (
               <span
                 key={language.iso_639_1}
                 style={{
@@ -64,7 +83,7 @@ const MovieDetails = ({ movie, recommendations }) => {
           </p>
           <p>
             <strong>Genres:</strong>
-            {movie.genres.map((genre) => (
+            {movie.genres?.map((genre) => (
               <span
                 key={genre.id}
                 style={{
@@ -104,19 +123,23 @@ const MovieDetails = ({ movie, recommendations }) => {
           </div>
 
           <br />
-          <Link to="/">
-            <button className="btn btn-outline-warning">Back to Movies</button>
-          </Link>
+          <button
+            className="btn btn-outline-warning"
+            onClick={navigateToHomePage}
+          >
+            Back to Movies
+          </button>
         </div>
       </div>
       <hr />
       <h1>Recommendations</h1>
-      {recommendations.length > 0 ? (
+      {recommendations?.length > 0 ? (
         <CardsCarousel recommendations={recommendations} />
       ) : (
         <p>No recommendations available.</p>
       )}
     </div>
+    </>
   );
 };
 

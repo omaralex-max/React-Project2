@@ -1,16 +1,18 @@
+import React, { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Suspense, lazy } from "react";
 
 const Favorites = lazy(() => import("../pages/Favorites/Favorites"));
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
+const MovieDescription = lazy(() => import("../pages/discriptionpage/MovieDescription"));
 
 export default function AppRoute() {
-    return (
-        <Suspense fallback={<h1>Loading...</h1>}>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="favorites" element={<Favorites />} />
-            </Routes>
-        </Suspense>
-    );
+  return (
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <Routes>
+        <Route path="*" element={<HomePage />} />
+        <Route path="favorites" element={<Favorites />} />
+        <Route path="movie/:id" element={<MovieDescription />} />
+      </Routes>
+    </Suspense>
+  );
 }
