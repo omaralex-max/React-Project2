@@ -3,6 +3,7 @@ import Navbar from "./Components/Navbar/Navbar";
 import Header from "./Components/header/Header";
 import MovieList from "./Components/MovieList/MovieList";
 import Pagination from "./Components/Pagination/Pagination";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [moviesData, setMoviesData] = useState([]);
@@ -45,21 +46,30 @@ function App() {
     <div>
       <Navbar />
       <Header />
-      <section style={sectionStyle}>
-        <h2>Popular Movies</h2>
-        {loading ? (
-          <p>Loading movies...</p>
-        ) : (
-          <>
-            <MovieList movies={currentMovies} />
-            <Pagination
-              currentPage={currentPage}
-              totalPages={totalPages}
-              onPageChange={handlePageChange}
-            />
-          </>
-        )}
-      </section>
+      <Routes>
+        
+        <Route
+          path="/"
+          element={
+            <section style={sectionStyle}>
+              <h2>Popular Movies</h2>
+              {loading ? (
+                <p>Loading movies...</p>
+              ) : (
+                <>
+                  <MovieList movies={currentMovies} />
+                  <Pagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={handlePageChange}
+                  />
+                </>
+              )}
+            </section>
+          }
+        />
+
+      </Routes>
     </div>
   );
 }

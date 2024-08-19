@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function MovieCard({ movie }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -36,6 +37,9 @@ function MovieCard({ movie }) {
             }}
           />
         </div>
+         <Link to={`/movie/${movie.id}`}>
+          <button className="btn btn-outline-warning">View Details</button>
+        </Link>
       </div>
     </div>
   );
