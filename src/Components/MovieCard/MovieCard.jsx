@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 function MovieCard({ movie }) {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -37,12 +36,6 @@ function MovieCard({ movie }) {
     fontSize: "14px",
   };
 
-  const navigate=useNavigate()
-
-  const navigateToDiscPage=()=>{
-      navigate('Discpage')
-  }
-  
   return (
     <div style={cardStyle}>
       <div style={imageWrapperStyle}>
@@ -72,7 +65,7 @@ function MovieCard({ movie }) {
           />
         </div>
          <Link to={`/movie/${movie.id}`}>
-          <button className="btn btn-outline-warning mb-3"  onClick={navigateToDiscPage}>View Details</button>
+          <button className="btn btn-outline-warning mb-3">View Details</button>
         </Link>
       </div>
     </div>
