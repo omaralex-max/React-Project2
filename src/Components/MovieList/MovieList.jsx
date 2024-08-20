@@ -1,7 +1,8 @@
 import React from "react";
-import MovieCard from "../../Components/MovieCard/MovieCard";
+import MovieCard from "../MovieCard/MovieCard";
 
 function MovieList({ movies }) {
+
   return (
     <div style={listStyle}>
       {movies.map((movie) => (

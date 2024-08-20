@@ -48,16 +48,13 @@ function CardsCarousel({ recommendations }) {
               // Calculate the rating and border color for each movie
               const rating = Math.round(movie.vote_average * 10);
               const borderColor = getBorderColor(rating);
+              const currentTheme = document.body.classList.contains("dark-mode") ? "darkmode" : "lightmode";
 
               return (
                 <Card
                   key={movie.id}
                   border="white"
-                  style={{
-                    width: "16rem",
-                    margin: "10px auto",
-                    position: "relative",
-                  }}
+                  style={cardStyle[currentTheme]}
                 >
                   <div
                     style={{
@@ -120,6 +117,22 @@ function CardsCarousel({ recommendations }) {
       ))}
     </Carousel>
   );
-}
 
+}
+const cardStyle = {
+  lightmode: {
+  width: "16rem",
+  margin: "10px auto",
+  position: "relative",
+  backgroundColor: "white",
+  color: "black",
+  },
+  darkmode: {
+    width: "16rem",
+    margin: "10px auto",
+    position: "relative",
+    backgroundColor: "#333",
+    color: "white",
+  }
+}
 export default CardsCarousel;

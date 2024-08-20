@@ -3,8 +3,9 @@
  import 'bootstrap/dist/css/bootstrap.min.css';
 
  function Header() {
+  const currentTheme = document.body.classList.contains("dark-mode") ? "darkmode" : "lightmode";
    return (
-     <header style={headerStyle}>
+     <header className='headBar' style={headerStyle[currentTheme]}>
        <div style={containerStyle}>
          <h1>Welcome to our movie app</h1>
          <p>Millions of movies, TV shows, and people to discover. Explore now.</p>
@@ -18,22 +19,48 @@
  }
 
  const headerStyle = {
-   backgroundColor: '#f1f1f1', // Lighter background color
+  lightmode: {
+   backgroundColor: '#f1f1f1', 
    padding: '20px',
-   borderRadius: '10px', // Rounded corners for the container
- };
+   borderRadius: '10px',
+   color:"black", 
+  }, 
+  darkmode: {
+   backgroundColor: '#333', 
+   padding: '20px',
+   borderRadius: '10px', 
+   color:'white',
+  }
+  };
 
  const containerStyle = {
    maxWidth: '1200px',
    margin: 'auto', 
    textAlign: 'left', 
    paddingLeft: '10px',
+   lightmode: {
+    backgroundColor: '#f1f1f1', 
+    color:"black", 
+   }, 
+   darkmode: {
+    backgroundColor: '#333', 
+    color: 'white', 
+   }
+
  };
 
  const searchContainerStyle = {
    display: 'flex',
    alignItems: 'center',
    marginTop: '10px',
+   lightmode: {
+    backgroundColor: '#f1f1f1', 
+    color:"black", 
+   }, 
+   darkmode: {
+    backgroundColor: '#333', 
+    color: 'white', 
+   }
  };
 
  const searchBarStyle = {

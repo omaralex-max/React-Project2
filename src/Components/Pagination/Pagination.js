@@ -1,8 +1,10 @@
 import React from "react";
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
+  const currentTheme = document.body.classList.contains("dark-mode") ? "darkmode" : "lightmode";
+
   return (
-    <div style={paginationContainerStyle}>
+    <div style={paginationContainerStyle[currentTheme]}>
       <button
         style={{
           ...buttonStyle,
@@ -33,11 +35,20 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
 }
 
 const paginationContainerStyle = {
+  lightmode: {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   padding: "20px",
   backgroundColor: "white",
+  },
+  darkmode: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "20px",
+    backgroundColor: "black",
+  }
 };
 
 const buttonStyle = {

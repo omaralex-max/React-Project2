@@ -1,18 +1,14 @@
-//import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useDispatch,useSelector,} from "react-redux";
-import { useEffect } from "react";
-import { addMovieToList,removeMovieFromList } from "../../Store/Slices/FavoritesSlice.js";
+import { useDispatch, useSelector } from "react-redux";
+import { addMovieToList, removeMovieFromList } from "../../Store/Slices/FavoritesSlice.js";
 
 function MovieCard({ movie }) {
-  const dispatch=useDispatch();
-
+  const dispatch = useDispatch();
   const isFavorite = useSelector((state) => 
     state.favList.favList.some((favMovie) => favMovie?.id === movie?.id)
   );
-
   const [isFavoriteLocal, setIsFavoriteLocal] = useState(isFavorite);
 
   useEffect(() => {
@@ -27,20 +23,22 @@ function MovieCard({ movie }) {
       } else {
         dispatch(removeMovieFromList(movie.id));
       }
-      
       return newFavoriteStatus;
     });
   };
 
-  //color raiting function
+  const currentTheme = document.body.classList.contains("dark-mode") ? "darkmode" : "lightmode";
+  
   const getBorderColor = (rating) => {
-    if (rating >= 80) return "#00ff00"; 
-    if (rating >= 60) return "yellow"; 
-    if (rating >= 50) return "orange"; 
-    return "red"; 
+    if (rating >= 80) return "#00ff00";
+    if (rating >= 60) return "yellow";
+    if (rating >= 50) return "orange";
+    return "red";
   };
+
   const rating = Math.round(movie.vote_average * 10);
   const borderColor = getBorderColor(rating);
+
   const ratingCircleStyle = {
     position: "absolute",
     bottom: "-15px",
@@ -59,7 +57,7 @@ function MovieCard({ movie }) {
   };
 
   return (
-    <div style={cardStyle}>
+    <div style={cardStyle[currentTheme]}>
       <div style={imageWrapperStyle}>
         <img
           src={
@@ -71,23 +69,23 @@ function MovieCard({ movie }) {
           style={imageStyle}
         />
         <div style={ratingCircleStyle}>
-          <span>{Math.round(movie.vote_average * 10)}</span>
+          <span>{rating}</span>
         </div>
       </div>
       <div style={cardContentStyle}>
         <h3 style={titleStyle}>{movie.title}</h3>
         <p style={dateStyle}>{new Date(movie.release_date).toDateString()}</p>
-        <div style={favoriteWrapperStyle} >
+        <div style={favoriteWrapperStyle}>
           <FaHeart
             style={{
-              color: isFavorite ? "#ffeb3b" : "gray",
+              color: isFavoriteLocal ? "#ffeb3b" : "gray",
               fontSize: "20px",
               cursor: "pointer",
             }}
             onClick={handleClick}
           />
         </div>
-         <Link to={`/movie/${movie.id}`}>
+        <Link to={`/movie/${movie.id}`}>
           <button className="btn btn-outline-warning mb-3">View Details</button>
         </Link>
       </div>
@@ -96,19 +94,35 @@ function MovieCard({ movie }) {
 }
 
 const cardStyle = {
-  width: "200px",
-  backgroundColor: "#fff",
-  borderRadius: "10px",
-  overflow: "hidden",
-  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-  margin: "10px",
-  textAlign: "center",
-  position: "relative",
+  lightmode: {
+
+    border:"1px solid white",
+    color:"black",
+    width: "200px",
+    backgroundColor: "white",
+    borderRadius: "10px",
+    overflow: "hidden",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    margin: "10px",
+    textAlign: "center",
+    position: "relative",
+  },
+  darkmode: {
+    width: "200px",
+    backgroundColor: "#333",
+    borderRadius: "10px",
+    overflow: "hidden",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    margin: "10px",
+    textAlign: "center",
+    position: "relative",
+    color: "white",
+  },
 };
 
 const imageWrapperStyle = {
-  position: "relative",  
-  borderRadius: "15px", 
+  position: "relative",
+  borderRadius: "15px",
 };
 
 const imageStyle = {
@@ -118,17 +132,16 @@ const imageStyle = {
   marginBottom: "10px",
 };
 
-
 const cardContentStyle = {
   padding: "10px",
   position: "relative",
 };
 
 const titleStyle = {
-marginTop: "15px",
-fontSize: "18px",
-height:"50px",
-marginBottom: "15px",
+  marginTop: "15px",
+  fontSize: "18px",
+  height: "50px",
+  marginBottom: "15px",
 };
 
 const dateStyle = {

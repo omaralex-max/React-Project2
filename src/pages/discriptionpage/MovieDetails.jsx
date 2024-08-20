@@ -7,6 +7,8 @@ import { FaHeart } from "react-icons/fa";
 import { useDispatch,useSelector,} from "react-redux";
 import { useEffect } from "react";
 import { addMovieToList,removeMovieFromList } from "../../Store/Slices/FavoritesSlice.js";
+import StarRatings from 'react-star-ratings';
+
 const MovieDetails = ({ movie, recommendations }) => {
   const primaryCompany = movie?.production_companies?.[0] || null;
   const dispatch=useDispatch();
@@ -68,8 +70,17 @@ const MovieDetails = ({ movie, recommendations }) => {
           </div>
           <p className="mb-5">
             <strong>Rating:</strong>
-            <DynamicStar rating={movie.vote_average} /> {movie.vote_average}
-          </p>
+            <StarRatings
+          rating={movie.vote_average / 2} // Assuming the API rating is out of 10 and stars are out of 5
+          starRatedColor="yellow"
+          starEmptyColor="gray"
+          starDimension="20px"
+          starSpacing="2px"
+          numberOfStars={5}
+          name='rating'
+        />          
+        </p>
+         
           <p className="mb-3">{movie.overview}</p>
           <p className="mb-3">
             <strong>Run Time: </strong>

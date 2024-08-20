@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import Header from "../../Components/header/Header";
 import MovieList from "../../Components/MovieList/MovieList";
 import Pagination from "../../Components/Pagination/Pagination";
-import { Routes, Route } from "react-router-dom";
+//import { Routes, Route } from "react-router-dom";
+//import { BiColor } from "react-icons/bi";
 
 const MoviesPage = () => {
   const [moviesData, setMoviesData] = useState([]);
@@ -40,13 +41,14 @@ const MoviesPage = () => {
     (currentPage - 1) * moviesPerPage,
     currentPage * moviesPerPage
   );
+  const currentTheme = document.body.classList.contains("dark-mode") ? "darkmode" : "lightmode";
 
   return (
     <div>
      
       <Header />
       
-            <section style={sectionStyle}>
+            <section style={sectionStyle[currentTheme]}>
               <h2>Popular Movies</h2>
               {loading ? (
                 <p>Loading movies...</p>
@@ -70,8 +72,16 @@ const MoviesPage = () => {
 };
 
 const sectionStyle = {
+  lightmode: {
   padding: "20px",
   backgroundColor: "#f8f9fa",
+  color:"black",
+  },
+  darkmode: {
+  padding: "20px",
+  backgroundColor: "black",
+  color: "white",
+  }
 };
 
 export default MoviesPage;
