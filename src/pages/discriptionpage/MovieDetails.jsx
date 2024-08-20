@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import DynamicStar from "./DynamicStar";
 import CardsCarousel from "./slidercards";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { FaHeart } from "react-icons/fa";
@@ -69,12 +68,11 @@ const MovieDetails = ({ movie, recommendations }) => {
             />
           </div>
           <p className="mb-5">
-            <strong>Rating:</strong>
             <StarRatings
           rating={movie.vote_average / 2} // Assuming the API rating is out of 10 and stars are out of 5
-          starRatedColor="yellow"
+          starRatedColor="#FFE353"
           starEmptyColor="gray"
-          starDimension="20px"
+          starDimension="30px"
           starSpacing="2px"
           numberOfStars={5}
           name='rating'
@@ -91,6 +89,7 @@ const MovieDetails = ({ movie, recommendations }) => {
                 padding: "5px 10px",
                 borderRadius: "15px",
                 fontSize: "14px",
+                color:"black",
               }}
             >
               {movie.runtime} Min
@@ -106,7 +105,8 @@ const MovieDetails = ({ movie, recommendations }) => {
                   backgroundColor: "#FFE353",
                   padding: "5px 10px",
                   borderRadius: "15px",
-                  fontSize: "14px",
+                  fontSize: "14pSx",
+                  color:"black",
                 }}
               >
                 {language.name}
@@ -125,6 +125,7 @@ const MovieDetails = ({ movie, recommendations }) => {
                   padding: "5px 10px",
                   borderRadius: "25px",
                   cursor: "pointer",
+                  color:"black",
                 }}
               >
                 {genre.name}
