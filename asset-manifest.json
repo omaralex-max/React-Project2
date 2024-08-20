@@ -1,0 +1,37 @@
+{
+  "files": {
+    "main.css": "/React-Project2/static/css/main.22dc2146.css",
+    "main.js": "/React-Project2/static/js/main.bf390e7a.js",
+    "static/css/820.53f34ce3.chunk.css": "/React-Project2/static/css/820.53f34ce3.chunk.css",
+    "static/js/820.2b19fa35.chunk.js": "/React-Project2/static/js/820.2b19fa35.chunk.js",
+    "static/js/799.365e002e.chunk.js": "/React-Project2/static/js/799.365e002e.chunk.js",
+    "static/js/887.efdd4dbd.chunk.js": "/React-Project2/static/js/887.efdd4dbd.chunk.js",
+    "static/css/850.3d9db72b.chunk.css": "/React-Project2/static/css/850.3d9db72b.chunk.css",
+    "static/js/282.cd7f7940.chunk.js": "/React-Project2/static/js/282.cd7f7940.chunk.js",
+    "static/css/55.d669a580.chunk.css": "/React-Project2/static/css/55.d669a580.chunk.css",
+    "static/js/55.b5a2ffe3.chunk.js": "/React-Project2/static/js/55.b5a2ffe3.chunk.js",
+    "static/media/fa-solid-900.ttf": "/React-Project2/static/media/fa-solid-900.07ed6d5fa32c1d54af0f.ttf",
+    "static/media/fa-brands-400.ttf": "/React-Project2/static/media/fa-brands-400.0ff70dcbf135d859ebf3.ttf",
+    "static/media/fa-solid-900.woff2": "/React-Project2/static/media/fa-solid-900.93f719f4d62bfa3e748c.woff2",
+    "static/media/fa-brands-400.woff2": "/React-Project2/static/media/fa-brands-400.bb8d5a145e22822103fb.woff2",
+    "static/media/fa-regular-400.ttf": "/React-Project2/static/media/fa-regular-400.17a6e1aebccdbaa39e78.ttf",
+    "static/media/fa-regular-400.woff2": "/React-Project2/static/media/fa-regular-400.bc3722686635b5f86132.woff2",
+    "static/media/fa-v4compatibility.ttf": "/React-Project2/static/media/fa-v4compatibility.0f6cb412603527bda691.ttf",
+    "static/media/fa-v4compatibility.woff2": "/React-Project2/static/media/fa-v4compatibility.6cfec8414be20e2c3426.woff2",
+    "index.html": "/React-Project2/index.html",
+    "main.22dc2146.css.map": "/React-Project2/static/css/main.22dc2146.css.map",
+    "main.bf390e7a.js.map": "/React-Project2/static/js/main.bf390e7a.js.map",
+    "820.53f34ce3.chunk.css.map": "/React-Project2/static/css/820.53f34ce3.chunk.css.map",
+    "820.2b19fa35.chunk.js.map": "/React-Project2/static/js/820.2b19fa35.chunk.js.map",
+    "799.365e002e.chunk.js.map": "/React-Project2/static/js/799.365e002e.chunk.js.map",
+    "887.efdd4dbd.chunk.js.map": "/React-Project2/static/js/887.efdd4dbd.chunk.js.map",
+    "850.3d9db72b.chunk.css.map": "/React-Project2/static/css/850.3d9db72b.chunk.css.map",
+    "282.cd7f7940.chunk.js.map": "/React-Project2/static/js/282.cd7f7940.chunk.js.map",
+    "55.d669a580.chunk.css.map": "/React-Project2/static/css/55.d669a580.chunk.css.map",
+    "55.b5a2ffe3.chunk.js.map": "/React-Project2/static/js/55.b5a2ffe3.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.22dc2146.css",
+    "static/js/main.bf390e7a.js"
+  ]
+}
