@@ -2,8 +2,11 @@ import React from "react";
 import { FaHeart } from "react-icons/fa";
 import Favorites from "../../pages/Favorites/Favorites";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons';
 
-function Navbar() {
+
+function Navbar({ darkMode, setDarkMode }) {
   const navigate=useNavigate()
   const navigateToFavoritesPage=()=>{
     navigate("Favorites")
@@ -11,6 +14,11 @@ function Navbar() {
   const navigateToHomePage=()=>{
     navigate("/")
   }
+  
+  
+  const toggleDarkMode = () => {
+    setDarkMode(prevMode => !prevMode);
+  };
   return (
     <nav style={navStyle}>
       <div style={leftSectionStyle}>
@@ -20,6 +28,10 @@ function Navbar() {
         <span style={languageStyle}>
           En <span style={dropdownArrowStyle}>▼</span>
         </span>
+        <span style={languageStyle} onClick={toggleDarkMode}>
+          <FontAwesomeIcon icon={faCircleHalfStroke} />
+        </span>
+
         <div style={watchlistStyle}>
           <FaHeart style={heartIconStyle} onClick={navigateToFavoritesPage} />
           <span onClick={navigateToFavoritesPage} >Watchlist</span>

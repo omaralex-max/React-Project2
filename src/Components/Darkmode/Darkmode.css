@@ -1,0 +1,17 @@
+body.dark-mode {
+    background-color: #121212;
+    color:white;
+    transition: background-color 0.3s, color 0.3s;
+  }
+section.dark-mode{
+    background-color: #121212;
+   
+    transition: background-color 0.3s, color 0.3s;
+
+}
+  
+  body.light-mode {
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
+  }

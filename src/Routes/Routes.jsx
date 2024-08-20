@@ -10,11 +10,11 @@ export default function AppRoute() {
   return (
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
-        <Route path="/" element={<HomePageLayout/>}>
+        
             <Route path="/" element={<HomePage />} />
             <Route path="favorites" element={<Favorites />} />
             <Route path="movie/:id" element={<MovieDescription />} />
-        </Route>
+        
       </Routes>
       
     </Suspense>

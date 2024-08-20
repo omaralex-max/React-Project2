@@ -81,7 +81,8 @@ const favoriteCardStyle = {
 
 const imageStyle = {
   width: "40%",
-  height: "95%",
+  height: "90%",
+  marginTop:"10px",
   borderRadius: "15px",
 };
 
