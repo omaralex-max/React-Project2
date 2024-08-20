@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../Components/Navbar/Navbar";
 import Header from "../../Components/header/Header";
 import MovieList from "../../Components/MovieList/MovieList";
 import Pagination from "../../Components/Pagination/Pagination";
@@ -9,7 +8,7 @@ const MoviesPage = () => {
   const [moviesData, setMoviesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const moviesPerPage = 6;
+  const moviesPerPage = 12;
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -44,12 +43,9 @@ const MoviesPage = () => {
 
   return (
     <div>
-      <Navbar />
+     
       <Header />
-      <Routes>
-        <Route
-          path="/"
-          element={
+      
             <section style={sectionStyle}>
               <h2>Popular Movies</h2>
               {loading ? (
@@ -67,9 +63,8 @@ const MoviesPage = () => {
                 </>
               )}
             </section>
-          }
-        />
-      </Routes>
+          
+       
     </div>
   );
 };

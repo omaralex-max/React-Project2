@@ -1,5 +1,6 @@
 
  import React from 'react'; 
+ import 'bootstrap/dist/css/bootstrap.min.css';
 
  function Header() {
    return (
@@ -9,7 +10,7 @@
          <p>Millions of movies, TV shows, and people to discover. Explore now.</p>
          <div style={searchContainerStyle}>
            <input type="text" placeholder="Search" style={searchBarStyle} />
-           <button style={searchButtonStyle}>Search</button>
+           <button style={searchButtonStyle} >Search</button>
          </div>
        </div>
      </header>
@@ -24,9 +25,9 @@
 
  const containerStyle = {
    maxWidth: '1200px',
-   margin: '0', // Remove margin to make it start from the left
-   textAlign: 'left', // Align content to the left
-   paddingLeft: '10px', // Slight padding to not stick to the edge completely
+   margin: 'auto', 
+   textAlign: 'left', 
+   paddingLeft: '10px',
  };
 
  const searchContainerStyle = {
@@ -40,17 +41,17 @@
    padding: '10px',
    borderRadius: '5px',
    border: '1px solid #ccc',
-   marginRight: '10px', // Small space between the search bar and the button
+   marginRight: '10px', 
  };
 
  const searchButtonStyle = {
-   padding: '10px 20px',
-   backgroundColor:'yellow',
-   color: '#333',
-   border: '1px solid black',
-   borderRadius: '5px',
-   cursor: 'pointer',
- };
+  padding: '10px 20px',
+  color: '#333',
+  backgroundColor: "#ffeb3b",
+  border: '1px solid yellow',
+  borderRadius: '5px',
+  boxShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)',
+};
 
  export default Header;
 

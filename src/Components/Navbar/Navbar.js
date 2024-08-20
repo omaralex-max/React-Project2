@@ -8,10 +8,13 @@ function Navbar() {
   const navigateToFavoritesPage=()=>{
     navigate("Favorites")
   }
+  const navigateToHomePage=()=>{
+    navigate("/")
+  }
   return (
     <nav style={navStyle}>
       <div style={leftSectionStyle}>
-        <span style={logoStyle}>Movie App</span>
+        <span style={logoStyle} onClick={navigateToHomePage}>Movie App</span>
       </div>
       <div style={rightSectionStyle}>
         <span style={languageStyle}>
@@ -42,6 +45,7 @@ const leftSectionStyle = {
 const logoStyle = {
   fontWeight: "bold",
   color: "#000",
+  cursor: "pointer",
 };
 
 const rightSectionStyle = {

@@ -2,12 +2,34 @@
 import React, { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useDispatch,useSelector,} from "react-redux";
+import { useEffect } from "react";
+import { addMovieToList,removeMovieFromList } from "../../Store/Slices/FavoritesSlice.js";
 
 function MovieCard({ movie }) {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch=useDispatch();
 
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
+  const isFavorite = useSelector((state) => 
+    state.favList.favList.some((favMovie) => favMovie?.id === movie?.id)
+  );
+
+  const [isFavoriteLocal, setIsFavoriteLocal] = useState(isFavorite);
+
+  useEffect(() => {
+    setIsFavoriteLocal(isFavorite);
+  }, [isFavorite]);
+
+  const handleClick = () => {
+    setIsFavoriteLocal((prev) => {
+      const newFavoriteStatus = !prev;
+      if (newFavoriteStatus) {
+        dispatch(addMovieToList(movie));
+      } else {
+        dispatch(removeMovieFromList(movie.id));
+      }
+      
+      return newFavoriteStatus;
+    });
   };
 
   //color raiting function
@@ -55,13 +77,14 @@ function MovieCard({ movie }) {
       <div style={cardContentStyle}>
         <h3 style={titleStyle}>{movie.title}</h3>
         <p style={dateStyle}>{new Date(movie.release_date).toDateString()}</p>
-        <div style={favoriteWrapperStyle} onClick={toggleFavorite}>
+        <div style={favoriteWrapperStyle} >
           <FaHeart
             style={{
               color: isFavorite ? "#ffeb3b" : "gray",
               fontSize: "20px",
               cursor: "pointer",
             }}
+            onClick={handleClick}
           />
         </div>
          <Link to={`/movie/${movie.id}`}>

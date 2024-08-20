@@ -4,12 +4,32 @@ import DynamicStar from "./DynamicStar";
 import CardsCarousel from "./slidercards";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { FaHeart } from "react-icons/fa";
-import Navbar from "../../Components/Navbar/Navbar";
+import { useDispatch,useSelector,} from "react-redux";
+import { useEffect } from "react";
+import { addMovieToList,removeMovieFromList } from "../../Store/Slices/FavoritesSlice.js";
 const MovieDetails = ({ movie, recommendations }) => {
   const primaryCompany = movie?.production_companies?.[0] || null;
-  const [isFavorite, setIsFavorite] = useState(false);
-  const toggleFavorite = () => setIsFavorite(!isFavorite);
+  const dispatch=useDispatch();
 
+  const isFavorite = useSelector((state) => 
+    state.favList.favList.some((favMovie) => favMovie?.id === movie?.id)
+  );
+
+  const [isFavoriteLocal, setIsFavoriteLocal] = useState(isFavorite);
+
+  useEffect(() => {
+    setIsFavoriteLocal(isFavorite);
+  }, [isFavorite]);
+
+  const handleClick = () => {
+    setIsFavoriteLocal((prev) => {
+      const newFavoriteStatus = !prev;
+      if (newFavoriteStatus) {
+        dispatch(addMovieToList(movie));
+      } else {
+        dispatch(removeMovieFromList(movie.id));
+      }
+    })}
   const navigate = useNavigate();
   const navigateToHomePage = () => navigate("/");
 
@@ -19,7 +39,7 @@ const MovieDetails = ({ movie, recommendations }) => {
 
   return (
     <>
-    <Navbar />
+    
     <div className="mx-5 mt-5">
       <div className="row">
         {/* Movie Poster */}
@@ -36,13 +56,14 @@ const MovieDetails = ({ movie, recommendations }) => {
         <div className="col-md-8 mx-4">
           <h1>{movie.title}</h1>
           <p style={{ color: "gray" }}>{movie.release_date}</p>
-          <div className="mb-3" onClick={toggleFavorite}>
+          <div className="mb-3" >
             <FaHeart
               style={{
                 color: isFavorite ? "#ffeb3b" : "gray",
                 fontSize: "30px",
                 cursor: "pointer",
               }}
+              onClick={handleClick}
             />
           </div>
           <p className="mb-5">
