@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import Header from "../../Components/header/Header";
 import MovieList from "../../Components/MovieList/MovieList";
 import Pagination from "../../Components/Pagination/Pagination";
-//import { Routes, Route } from "react-router-dom";
-//import { BiColor } from "react-icons/bi";
 
 const MoviesPage = () => {
   const [moviesData, setMoviesData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchQuery, setSearchQuery] = useState('');
   const moviesPerPage = 12;
 
   useEffect(() => {
@@ -29,7 +28,16 @@ const MoviesPage = () => {
     fetchMovies();
   }, [currentPage]);
 
-  const totalPages = Math.ceil(moviesData.length / moviesPerPage);
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    setCurrentPage(1); // Reset to first page on new search
+  };
+
+  const filteredMovies = moviesData.filter(movie =>
+    movie.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredMovies.length / moviesPerPage);
 
   const handlePageChange = (page) => {
     if (page > 0 && page <= totalPages) {
@@ -37,51 +45,60 @@ const MoviesPage = () => {
     }
   };
 
-  const currentMovies = moviesData.slice(
+  const currentMovies = filteredMovies.slice(
     (currentPage - 1) * moviesPerPage,
     currentPage * moviesPerPage
   );
+
   const currentTheme = document.body.classList.contains("dark-mode") ? "darkmode" : "lightmode";
+  const notFoundStyle = {
+    fontSize: '50px',
+    color: currentTheme === 'darkmode' ? 'white' : 'grey',
+    textAlign: 'center',
+    marginTop: '20px',
+    fontWeight: 'bold',
+  };
 
   return (
     <div>
-     
-      <Header />
-      
-            <section style={sectionStyle[currentTheme]}>
-              <h2>Popular Movies</h2>
-              {loading ? (
-                <p>Loading movies...</p>
-              ) : (
-                <>
-                  <MovieList movies={currentMovies} />
-                  {moviesData.length > 0 && (
-                    <Pagination
-                      currentPage={currentPage}
-                      totalPages={totalPages}
-                      onPageChange={handlePageChange}
-                    />
-                  )}
-                </>
-              )}
-            </section>
-          
-       
+      <Header onSearch={handleSearch} />
+      <section style={sectionStyle[currentTheme]}>
+        <h2>Popular Movies</h2>
+        {loading ? (
+          <p>Loading movies...</p>
+        ): filteredMovies.length === 0 ? (
+            <p style={notFoundStyle}>No Movies Found</p>
+        ) : (
+          <>
+            <MovieList movies={currentMovies} />
+            {filteredMovies.length > 0 && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+              />
+            )}
+          </>
+        )}
+      </section>
     </div>
   );
 };
 
 const sectionStyle = {
+  
   lightmode: {
-  padding: "20px",
-  backgroundColor: "#f8f9fa",
-  color:"black",
+    padding: "20px",
+    backgroundColor: "#f8f9fa",
+    color:"black",
+    
   },
   darkmode: {
-  padding: "20px",
-  backgroundColor: "black",
-  color: "white",
+    padding: "20px",
+    backgroundColor: "black",
+    color: "white",
   }
 };
+
 
 export default MoviesPage;

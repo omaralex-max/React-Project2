@@ -4,7 +4,7 @@ import Store from "./Store/Store";
 import { Provider } from "react-redux";
 import Navbar from './Components/Navbar/Navbar';
 import "./Components/Darkmode/Darkmode.css"
-
+import Footer from "./Components/Footer/Footer";
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
 
@@ -20,7 +20,7 @@ export default function App() {
     <Provider store={Store}>
     <Routes/>
     </Provider>
-   
+    <Footer />
     </>
     
   )

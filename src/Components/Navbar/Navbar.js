@@ -1,6 +1,5 @@
 import React from "react";
 import { FaHeart } from "react-icons/fa";
-import Favorites from "../../pages/Favorites/Favorites";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons';
@@ -22,7 +21,7 @@ function Navbar({ darkMode, setDarkMode }) {
   return (
     <nav style={navStyle}>
       <div style={leftSectionStyle}>
-        <span style={logoStyle} onClick={navigateToHomePage}>Movie App</span>
+        <span style={logoStyle} onClick={navigateToHomePage}>MovieStar</span>
       </div>
       <div style={rightSectionStyle}>
         <span style={languageStyle}>
@@ -58,6 +57,8 @@ const logoStyle = {
   fontWeight: "bold",
   color: "#000",
   cursor: "pointer",
+  fontSize: "24px",
+  fontStyle: "italic",
 };
 
 const rightSectionStyle = {
