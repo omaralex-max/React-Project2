@@ -1,36 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import MovieDetails from './MovieDetails';
+// CardsCarousel.js
+import React from "react";
+import PropTypes from "prop-types";
 
-const MovieDescription = () => {
-  const { id } = useParams();
-  const [recomendation, setMovie] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const CardsCarousel = ({ recommendations }) => {
+  if (!recommendations || !Array.isArray(recommendations)) {
+    return <p>No recommendations available.</p>;
+  }
 
-  useEffect(() => {
-    axios.get(`https://api.themoviedb.org/3/movie/${id}/recommendations`, {
-      params: {
-        api_key: '26c8bc27569c6c650c8f4a2562784179',
-        language: 'en-US'
-      }
-    })
-    .then(response => {
-      console.log(response.data); // Log the entire response to check if recommendations are present
-      setMovie(response.data.results); // Use response.data.results if recommendations are in an array
-      setLoading(false);
-    })
-    .catch(error => {
-      setError(error);
-      setLoading(false);
-    });
-  }, [id]);
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  if (!recomendation) return <div>Recomendations not found!</div>;
-
-  return <MovieDetails movie={recomendation} />;
+  return (
+    <div className="carousel">
+      {recommendations.map((item) => (
+        <div key={item.id} className="carousel-item">
+          <img src={`https://image.tmdb.org/t/p/w500${item.poster_path}`} alt={item.title} />
+          <h3>{item.title}</h3>
+        </div>
+      ))}
+    </div>
+  );
 };
 
-export default MovieDescription;
+CardsCarousel.propTypes = {
+  recommendations: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      poster_path: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+export default CardsCarousel;

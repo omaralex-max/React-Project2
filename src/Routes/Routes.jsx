@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 const Favorites = lazy(() => import("../pages/Favorites/Favorites"));
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
-const MovieDescription = lazy(() => import("../pages/discriptionpage/MovieDescription"));
+const MovieDescription = lazy(() => import("../pages/discriptionpage/MovieApi"));
 const HomePageLayout = lazy(() => import("../Components/Layout/Layout"));
 
 export default function AppRoute() {
